@@ -14,12 +14,14 @@ public class MatrixSpiral {
                 System.out.print(matrix[i][colEnd] + " ");
             }
 
-            for (int i = colEnd - 1; i >= colStart; i--) {
-                System.out.print(matrix[rowEnd][i] + " ");
-            }
+            if (rowStart < rowEnd && colStart < colEnd) {
+                for (int i = colEnd - 1; i >= colStart; i--) {
+                    System.out.print(matrix[rowEnd][i] + " ");
+                }
 
-            for (int i = rowEnd - 1; i > rowStart; i--) {
-                System.out.print(matrix[i][colStart] + " ");
+                for (int i = rowEnd - 1; i > rowStart; i--) {
+                    System.out.print(matrix[i][colStart] + " ");
+                }
             }
 
             rowStart++;
@@ -44,12 +46,14 @@ public class MatrixSpiral {
                 System.out.print(matrix[i][colStart] + " ");
             }
 
-            for (int i = colStart + 1; i <= colEnd; i++) {
-                System.out.print(matrix[rowStart][i] + " ");
-            }
+            if (rowStart < rowEnd && colStart < colEnd) {
+                for (int i = colStart + 1; i <= colEnd; i++) {
+                    System.out.print(matrix[rowStart][i] + " ");
+                }
 
-            for (int i = rowStart + 1; i < rowEnd; i++) {
-                System.out.print(matrix[i][colEnd] + " ");
+                for (int i = rowStart + 1; i < rowEnd; i++) {
+                    System.out.print(matrix[i][colEnd] + " ");
+                }
             }
 
             rowStart++;
@@ -74,12 +78,14 @@ public class MatrixSpiral {
                 System.out.print(matrix[rowStart][i] + " ");
             }
 
-            for (int i = rowStart + 1; i < rowEnd ; i++) {
-                System.out.print(matrix[i][colStart] + " ");
-            }
+            if (rowStart < rowEnd && colStart < colEnd) {
+                for (int i = rowStart + 1; i < rowEnd; i++) {
+                    System.out.print(matrix[i][colStart] + " ");
+                }
 
-            for (int i = colStart; i <= colEnd - 1; i++) {
-                System.out.print(matrix[rowEnd][i] + " ");
+                for (int i = colStart; i <= colEnd - 1; i++) {
+                    System.out.print(matrix[rowEnd][i] + " ");
+                }
             }
 
             rowStart++;
@@ -89,31 +95,43 @@ public class MatrixSpiral {
         }
     }
 
+    private static void printMatrix(int[][] matrix) {
+        printSpiral(matrix);
+        System.out.println();
+        printSpiralReverseClockwise(matrix);
+        System.out.println();
+        printSpiralReverseCounterClockwise(matrix);
+        System.out.println();
+        System.out.println();
+    }
+
     public static void main(String[] args) {
-        int[][] squareMatrix = {
+        int[][] squareEvenMatrix = {
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},
                 {9, 10, 11, 12},
                 {13, 14, 15, 16}
         };
-        int[][] rectMatrix = {
+        int[][] squareOddMatrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        int[][] longRectMatrix = {
                 {1, 2, 3},
                 {4, 5, 6},
                 {7, 8, 9},
                 {10, 11, 12}
         };
-        printSpiral(squareMatrix);
-        System.out.println();
-        printSpiral(rectMatrix);
+        int[][] wideRectMatrix = {
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12}
+        };
 
-        System.out.println();
-        printSpiralReverseClockwise(squareMatrix);
-        System.out.println();
-        printSpiralReverseClockwise(rectMatrix);
-
-        System.out.println();
-        printSpiralReverseCounterClockwise(squareMatrix);
-        System.out.println();
-        printSpiralReverseCounterClockwise(rectMatrix);
+        printMatrix(squareEvenMatrix);
+        printMatrix(squareOddMatrix);
+        printMatrix(longRectMatrix);
+        printMatrix(wideRectMatrix);
     }
 }
