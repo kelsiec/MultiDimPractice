@@ -1,8 +1,7 @@
 import java.util.Arrays;
 
 public class SetZeros {
-    public static int[][] setZeros(int[][] matrix) {
-        int[][] returnMatrix = new int[matrix.length][matrix[0].length];
+    public static void setZeros(int[][] matrix) {
         boolean[] rowZeros = new boolean[matrix.length];
         boolean[] colZeros = new boolean[matrix[0].length];
 
@@ -15,11 +14,15 @@ public class SetZeros {
 
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                returnMatrix[i][j] = rowZeros[i] || colZeros[j] ? 0 : matrix[i][j];
+                matrix[i][j] = rowZeros[i] || colZeros[j] ? 0 : matrix[i][j];
+
+                if (rowZeros[i] || colZeros[j]) {
+                    matrix[i][j] = 0;
+                } else {
+                    matrix[i][j] = matrix[i][j];
+                }
             }
         }
-
-        return returnMatrix;
     }
 
     public static void main(String[] args) {
@@ -36,8 +39,11 @@ public class SetZeros {
                 {0, 11, 12}
         };
 
-        System.out.println(Arrays.deepToString(setZeros(squareEvenMatrix)));
-        System.out.println(Arrays.deepToString(setZeros(longRectMatrix)));
+        setZeros(squareEvenMatrix);
+        System.out.println(Arrays.deepToString(squareEvenMatrix));
+
+        setZeros(longRectMatrix);
+        System.out.println(Arrays.deepToString(longRectMatrix));
     }
 
 }
