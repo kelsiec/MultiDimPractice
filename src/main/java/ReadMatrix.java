@@ -9,9 +9,16 @@ public class ReadMatrix {
         List<List<Integer>> returnMatrix = new ArrayList<>();
 
         Scanner scan = new Scanner(new File(filePath));
+        int maxColumns = 0;
+
         while (scan.hasNextLine()) {
             List<Integer> line = new ArrayList<>();
             String[] data = scan.nextLine().split("\\s+");
+
+            if (data.length > maxColumns) {
+                maxColumns = data.length;
+            }
+
             for (String element : data) {
                 try {
                     line.add(Integer.valueOf(element));
@@ -21,6 +28,13 @@ public class ReadMatrix {
             }
 
             returnMatrix.add(line);
+        }
+
+        for (List<Integer> row : returnMatrix) {
+            int size = row.size();
+            for (int i = size; i < maxColumns; i++) {
+                row.add(0);
+            }
         }
 
         return returnMatrix;
